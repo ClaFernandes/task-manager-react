@@ -31,8 +31,68 @@ Experimente o aplicativo diretamente no navegador:
 
 ---
 
+## 📁 Estrutura do projeto
+
+task-manager-react/
+├── public/
+│   └── index.html          # HTML principal
+├── src/
+│   ├── components/
+│   │   ├── AddTask.jsx
+│   │   ├── Tasks.jsx
+│   │   ├── Button.jsx
+│   │   └── Input.jsx
+│   ├── pages/
+│   │   └── TaskPage.jsx
+│   ├── App.jsx
+│   ├── index.js
+│   └── ...
+└── package.json
+
+---
+
+## 📁 Fluxo de dados e componentes
+
+App.jsx
+├── State: tasks[]
+├── Funções: onAddTaskSubmit, onTaskClick, onDeleteTaskClick
+├── Renderiza:
+│   ├── <AddTask /> → dispara submit
+│   └── <Tasks /> → dispara eventos de clique/deletar/ver detalhes
+
+AddTask.jsx
+├── Inputs: <Input />
+└── Botão: <Button /> "Adicionar Tarefa"
+
+Tasks.jsx
+├── Recebe tasks[] e funções de App.jsx
+├── Lista tarefas com:
+│   ├─ Concluir → onTaskClick
+│   ├─ Ver detalhes → TaskPage.jsx
+│   └─ Deletar → onDeleteTaskClick
+
+TaskPage.jsx
+├── Lê query string (?title, ?description)
+├── Renderiza detalhes da tarefa
+└── Botão voltar → navigate(-1)
+
+---
+
+## 🔹 Resumo visual do fluxo
+
+Usuário
+  │
+  ▼
+App.jsx (state tasks)
+  │
+  ├── <AddTask /> → onAddTaskSubmit → App.jsx atualiza tasks
+  └── <Tasks /> → dispara onTaskClick / onDeleteTaskClick / Ver detalhes
+localStorage <- App.jsx atualiza automaticamente
+
+---
+
 ## 👩‍💻 Autora
 
-Projeto desenvolvido por Clarice Fernandes
+Projeto desenvolvido por Clarice Fernandes.
 
 GitHub: https://github.com/ClaFernandes
